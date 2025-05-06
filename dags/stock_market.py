@@ -9,12 +9,16 @@ from airflow.providers.docker.operators.docker import DockerOperator
 # from astro.sql.table import Table, Metadata
 from datetime import datetime
 
+import sys
+import os
+sys.path.insert(0,os.path.abspath(os.path.dirname(__file__)))
+
 from include.stock_market.tasks import _get_stock_prices, _store_prices, _get_formatted_csv, BUCKET_NAME
 
 SYMBOL = 'NVDA'
 
 @dag(
-    start_date=datetime(2023, 1, 1),
+    start_date=datetime(2025, 1, 1),
     schedule='@daily',
     catchup=False,
     tags=['stock_market'],
